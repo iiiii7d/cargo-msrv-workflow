@@ -36,7 +36,8 @@ jobs:
         with:
           tool: cargo-edit,cargo-msrv
 
-      - run: |
+      - if: ${{ inputs.run-cargo-msrv }}
+        run: |
           cat Cargo.toml | sed -z 's/rust-version.*//mg' > Cargo2.toml
           mv Cargo2.toml Cargo.toml
           
