@@ -9,10 +9,7 @@ on:
         default: upgrade rust dependencies
       upgrade-branch-name:
         type: string
-        default: cargo-upgrade
-      run-cargo-msrv:
-        type: boolean
-        default: true
+        default: update-msrv
       working-directory:
         type: string
         default: "."
@@ -34,21 +31,13 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - uses: taiki-e/install-action@v2
         with:
-          tool: cargo-edit,cargo-msrv
+          tool: cargo-msrv
 
-      - if: ${{ inputs.run-cargo-msrv }}
-        run: |
+      - run: |
           cat Cargo.toml | sed -z 's/rust-version.*\n//mg' > Cargo2.toml
           mv Cargo2.toml Cargo.toml
           
-      - run: cargo upgrade -i --recursive true
-        continue-on-error: true
-      - run: cargo update
-        continue-on-error: true
-
       - run: cargo msrv find --ignore-lockfile --write-msrv
-        continue-on-error: true
-        if: ${{ inputs.run-cargo-msrv }}
       
       - run: echo "message=upgrade rust dependencies @ $(date +%Y%m%dT%H:%M:%S%Z)" >> "$GITHUB_ENV"
       - uses: peter-evans/create-pull-request@v7
