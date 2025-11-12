@@ -40,7 +40,7 @@ jobs:
       - run: cargo msrv find --ignore-lockfile --write-msrv
       
       - run: echo "message=upgrade rust dependencies @ $(date +%Y%m%dT%H:%M:%S%Z)" >> "$GITHUB_ENV"
-      - uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7
+      - uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
         with:
           commit-message: ${{ env.message }}
           title: ${{ inputs.upgrade-branch-title }}
