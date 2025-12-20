@@ -3,10 +3,10 @@
   "extends": [
     "github>iiiii7d/renovate-config:no-dev"
   ],
-  "packageRules:" {
+  "packageRules": [{
     "matchCategories": ["ci"],
     "matchUpdateTypes": ["patch"],
     "automerge": true,
     "ignoreTests": true
-  }
+  }]
 }
