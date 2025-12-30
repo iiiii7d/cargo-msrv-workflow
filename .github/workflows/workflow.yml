@@ -29,7 +29,7 @@ jobs:
           ref: ${{ inputs.checkout-ref }}
           
       - uses: Swatinem/rust-cache@779680da715d629ac1d338a641029a2f4372abb5 # v2.8.2
-      - uses: taiki-e/install-action@ff581034fb69296c525e51afd68cb9823bfbe4ed # v2.65.8
+      - uses: taiki-e/install-action@12a06cb21bb5f4b6f9dc82f1dc17737960f5365b # v2.65.9
         with:
           tool: cargo-msrv
 
