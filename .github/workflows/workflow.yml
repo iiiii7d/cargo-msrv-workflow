@@ -6,13 +6,16 @@ on:
         default: ""
       upgrade-branch-title:
         type: string
-        default: upgrade rust dependencies
+        default: Run `cargo-msrv`
       upgrade-branch-name:
         type: string
-        default: update-msrv
+        default: cargo-msrv
       working-directory:
         type: string
         default: "."
+      commit-message:
+        type: string
+        default: run cargo-msrv
 
 jobs:
   cargo-msrv-upgrade:
@@ -39,7 +42,7 @@ jobs:
           
       - run: cargo msrv find --ignore-lockfile --write-msrv
       
-      - run: echo "message=update msrv @ $(date +%Y%m%dT%H:%M:%S%Z)" >> "$GITHUB_ENV"
+      - run: echo "message=${{ inputs.commit-message }} @ $(date +%Y%m%dT%H:%M:%S%Z)" >> "$GITHUB_ENV"
       - uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
         with:
           commit-message: ${{ env.message }}
