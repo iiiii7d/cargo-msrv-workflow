@@ -1,9 +1,6 @@
 on:
   workflow_call:
     inputs:
-      checkout-ref:
-        type: string
-        default: ""
       upgrade-branch-title:
         type: string
         default: Run `cargo-msrv`
@@ -28,8 +25,6 @@ jobs:
         working-directory: ${{ inputs.working-directory }}
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        with:
-          ref: ${{ inputs.checkout-ref }}
           
       - uses: actions-rust-lang/setup-rust-toolchain@150fca883cd4034361b621bd4e6a9d34e5143606 # v1.15.4
         env:
@@ -50,7 +45,9 @@ jobs:
           
       - run: cargo msrv find --ignore-lockfile --write-msrv
       
-      - run: echo "message=${{ inputs.commit-message }} @ $(date +%Y%m%dT%H:%M:%S%Z)" >> "$GITHUB_ENV"
+      - run: echo "message=$COMMIT_MESSAGE @ $(date +%Y%m%dT%H:%M:%S%Z)" >> "$GITHUB_ENV"
+        env:
+          COMMIT_MESSAGE: ${{ inputs.commit-message }}
       - uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
         with:
           commit-message: ${{ env.message }}
