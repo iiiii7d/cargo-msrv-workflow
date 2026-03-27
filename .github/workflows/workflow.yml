@@ -29,7 +29,7 @@ jobs:
       - uses: actions-rust-lang/setup-rust-toolchain@150fca883cd4034361b621bd4e6a9d34e5143606 # v1.15.4
         env:
           # renovate: datasource=github-tags depName=rust-lang/rust versioning=rust-release-channel
-          RUST_VERSION: 1.94.0
+          RUST_VERSION: 1.94.1
         with:
           toolchain: ${{ env.RUST_VERSION }}
       - uses: taiki-e/install-action@80a23c5ba9e1100fd8b777106e810018ed662a7b # v2.69.12
