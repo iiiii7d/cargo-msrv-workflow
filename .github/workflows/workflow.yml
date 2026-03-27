@@ -45,11 +45,8 @@ jobs:
           
       - run: cargo msrv find --ignore-lockfile --write-msrv
       
-      - run: echo "message=$COMMIT_MESSAGE @ $(date +%Y%m%dT%H:%M:%S%Z)" >> "$GITHUB_ENV"
-        env:
-          COMMIT_MESSAGE: ${{ inputs.commit-message }}
       - uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8.1.0
         with:
-          commit-message: ${{ env.message }}
+          commit-message: ${{ inputs.commit-message }}
           title: ${{ inputs.upgrade-branch-title }}
           branch: ${{ inputs.upgrade-branch-name }}
