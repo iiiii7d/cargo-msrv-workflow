@@ -32,7 +32,7 @@ jobs:
           RUST_VERSION: 1.94.1
         with:
           toolchain: ${{ env.RUST_VERSION }}
-      - uses: taiki-e/install-action@6ef672efc2b5aabc787a9e94baf4989aa02a97df # v2.70.3
+      - uses: taiki-e/install-action@bfadeaba214680fb4ab63e710bcb2a6a17019fdc # v2.70.4
         env:
           # renovate: datasource=crate depName=cargo-msrv versioning=loose
           CARGO_MSRV_VERSION: 0.19.3
