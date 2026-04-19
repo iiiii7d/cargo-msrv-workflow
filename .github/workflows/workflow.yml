@@ -32,13 +32,12 @@ jobs:
           RUST_VERSION: 1.94.1
         with:
           toolchain: ${{ env.RUST_VERSION }}
-      - uses: taiki-e/install-action@eea29cff9a2b68892c0845ae3e4f45fc47ee9354 # v2.75.13
+      - uses: cargo-bins/cargo-binstall@d125de8b4538541574fd9357b6feb61c8486464b # main
+      - run: cargo binstall --force cargo-msrv@${{ env.CARGO_MSRV_VERSION }}
         env:
           # renovate: datasource=crate depName=cargo-msrv versioning=loose
           CARGO_MSRV_VERSION: 0.19.3
-        with:
-          tool: cargo-msrv@${{ env.CARGO_MSRV_VERSION }}
-
+          
       - run: |
           cat Cargo.toml | sed -z 's/rust-version.*\n//mg' > Cargo2.toml
           mv Cargo2.toml Cargo.toml
