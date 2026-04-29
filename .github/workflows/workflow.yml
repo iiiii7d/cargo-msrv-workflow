@@ -32,7 +32,7 @@ jobs:
           RUST_VERSION: 1.95.0
         with:
           toolchain: ${{ env.RUST_VERSION }}
-      - uses: cargo-bins/cargo-binstall@d53a6272dbf8d0bb6b2b9cbad1e50c821d9f7d09 # main
+      - uses: cargo-bins/cargo-binstall@c0ae9335b22cb4f297cdd1df049cd87bf2aa223f # main
       - run: cargo binstall --force cargo-msrv@${{ env.CARGO_MSRV_VERSION }}
         env:
           # renovate: datasource=crate depName=cargo-msrv versioning=loose
