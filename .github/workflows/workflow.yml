@@ -28,7 +28,7 @@ jobs:
           
       - uses: actions-rust-lang/setup-rust-toolchain@2b1f5e9b395427c92ee4e3331786ca3c37afe2d7 # v1.16.0
         env:
-          # renovate: datasource=github-tags depName=rust-lang/rust versioning=rust-release-channel
+          # renovate: datasource=rust-version depName=rust
           RUST_VERSION: 1.95.0
         with:
           toolchain: ${{ env.RUST_VERSION }}
