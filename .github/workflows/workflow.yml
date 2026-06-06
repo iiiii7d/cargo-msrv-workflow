@@ -50,5 +50,6 @@ jobs:
       - uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
           commit-message: ${{ inputs.commit-message }}
-          title: ${{ inputs.upgrade-branch-title }}
-          branch: ${{ inputs.upgrade-branch-name }}
+          title: ${{ inputs.upgrade-branch-title }} (${{ github.base_ref }})
+          branch: ${{ inputs.upgrade-branch-name }}/${{ github.base_ref }} 
+          delete-branch: true
