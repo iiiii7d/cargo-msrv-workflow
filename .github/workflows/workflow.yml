@@ -13,6 +13,9 @@ on:
       commit-message:
         type: string
         default: run cargo-msrv
+      check-cmd:
+        type: string
+        default: cargo check --release --no-default-features
 
 jobs:
   run-cargo-msrv:
@@ -42,7 +45,7 @@ jobs:
           
       - run: sed -iE 's/rust-version.*\n//mg' Cargo.toml
           
-      - run: cargo msrv find --write-msrv --ignore-lockfile -- cargo check --release
+      - run: cargo msrv find --write-msrv --ignore-lockfile -- ${{ inputs.check-cmd }}
 
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
