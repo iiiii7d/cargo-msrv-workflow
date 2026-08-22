@@ -43,7 +43,7 @@ jobs:
           # renovate: datasource=crate depName=cargo-msrv versioning=loose
           CARGO_MSRV_VERSION: 0.19.3
           
-      - run: sed -iE 's/rust-version.*\n//mg' Cargo.toml
+      - run: sed -i '/^rust-version/d' Cargo.toml
           
       - run: cargo msrv find --write-msrv --ignore-lockfile -- ${{ inputs.check-cmd }}
 
