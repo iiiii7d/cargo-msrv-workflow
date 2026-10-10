@@ -41,7 +41,7 @@ jobs:
       - run: cargo binstall --force cargo-msrv@${{ env.CARGO_MSRV_VERSION }}
         env:
           # renovate: datasource=crate depName=cargo-msrv versioning=loose
-          CARGO_MSRV_VERSION: 0.19.3
+          CARGO_MSRV_VERSION: 0.20.0-beta.1
           
       - run: sed -i '/^rust-version/d' Cargo.toml
           
