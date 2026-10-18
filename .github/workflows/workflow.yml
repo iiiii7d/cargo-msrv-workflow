@@ -34,7 +34,7 @@ jobs:
       - uses: actions-rust-lang/setup-rust-toolchain@ecabd13d1c56bd1345c230e542e9144811ad706f # v2.0.0
         env:
           # renovate: datasource=rust-version depName=rust
-          RUST_VERSION: 1.99.0
+          RUST_VERSION: 1.99.1
         with:
           toolchain: ${{ env.RUST_VERSION }}
       - uses: cargo-bins/cargo-binstall@3be4ad2b146f3302f92e5956c54fedbb6ae8cccc # v1.25.3
